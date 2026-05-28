@@ -1,7 +1,20 @@
 """Student Grade Management System"""
 
+def get_letter_grade(grade):
+    """Maps the numerical grade to a letter"""
+    if grade < 60.0:
+        return "F"
+    elif 60.0 <= grade < 70.0:
+        return "D"
+    elif 70.0 <= grade < 80.0:
+        return "C"
+    elif 80.0 <= grade < 90.0:
+        return "B"
+    elif 90.0 <= grade <= 100.0:
+        return "A"
+
 class Student:
-    """Student class fuck you"""
+    """Student class"""
 
     def __init__(self, name, identificator):
         self.id = identificator
@@ -15,7 +28,7 @@ class Student:
 
     def calculate_average(self):
         """Calculates average grade from grades array"""
-        return self.grades.sum() / len(self.grades)
+        return sum(self.grades) / len(self.grades)
 
     def check_honor(self):
         """Determines wether the student graduates with honors or not"""
