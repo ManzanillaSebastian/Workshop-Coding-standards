@@ -20,7 +20,6 @@ class Student:
         self.id = identificator
         self.name = name
         self.grades = []
-        self.is_passed = "NO"
 
     def add_grade(self, grade):
         """Adds a grade to grades array"""
@@ -29,6 +28,10 @@ class Student:
     def calculate_average(self):
         """Calculates average grade from grades array"""
         return sum(self.grades) / len(self.grades)
+
+    def is_passed(self, average_grade):
+        """Determines if the student got approved or not"""
+        return "Passed" if average_grade >= 60.0 else "Failed"
 
     def check_honor(self):
         """Determines wether the student graduates with honors or not"""
@@ -40,10 +43,13 @@ class Student:
 
     def report(self):
         """Generates a report of the students data and academic performance"""
+        average = self.calculate_average()
         print("ID: " + self.id)
         print("Name is: " + self.name)
         print("Grades Count: " + len(self.grades))
-        print("Final Grade = " + self.calculate_average())
+        print("Final Grade = " + average)
+        print("Letter Grade = ", get_letter_grade(average))
+        print("Passed = ", self.is_passed(average))
         print("Honor = ", self.check_honor())
 
 
