@@ -2,6 +2,8 @@
 
 def get_letter_grade(grade):
     """Maps the numerical grade to a letter"""
+    if grade < 0.0 or grade > 100.0:
+        raise ValueError
     if grade < 60.0:
         return "F"
     elif 60.0 <= grade < 70.0:
@@ -39,6 +41,8 @@ class Student:
 
     def delete_grade(self, index):
         """Deletes a grade from the grades array on certain index"""
+        if index < 0 or index >= len(self.grades):
+            raise IndexError
         self.grades.pop(index)
 
     def report(self):
@@ -53,13 +57,21 @@ class Student:
         print("Honor = ", self.check_honor())
 
 
-def start_run():
+def main():
     """Entry point of the program"""
-    student = Student("Mercedes Mawyin", "1234567")
-    student.add_grade(100)
-    student.add_grade("Fifty")
-    student.delete_grade(5)
-    student.report()
+    try:
+        student = Student("Mercedes Mawyin", "1234567")
+        student.add_grade(100)
+        student.add_grade("Fifty")
+        student.delete_grade(5)
+        student.report()
+    except ValueError as e:
+        print(f"Error: {e}")
+    except IndexError as e:
+        print(f"Error: {e}")
 
 
-start_run()
+
+
+if __name__ == "__main__":
+    main()
