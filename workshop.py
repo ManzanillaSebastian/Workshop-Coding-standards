@@ -10,21 +10,23 @@ class Student:
         self.is_passed = "NO"
 
     def add_grade(self, grade):
+        """Adds a grade to grades array"""
         self.grades.append(grade)
 
     def calculate_average(self):
-        t = 0
-        for x in self.grades:
-            t += x
-        return t / len(self.grades)
+        """Calculates average grade from grades array"""
+        return self.grades.sum() / len(self.grades)
 
     def check_honor(self):
-        return "yep" if self.calculate_average() > 90 else "nuh uh"
+        """Determines wether the student graduates with honors or not"""
+        return "Yes" if self.calculate_average() > 90 else "No"
 
     def delete_grade(self, index):
+        """Deletes a grade from the grades array on certain index"""
         self.grades.pop(index)
 
-    def report(self):  # broken format
+    def report(self):
+        """Generates a report of the students data and academic performance"""
         print("ID: " + self.id)
         print("Name is: " + self.name)
         print("Grades Count: " + len(self.grades))
@@ -33,11 +35,12 @@ class Student:
 
 
 def start_run():
-    a = Student("x", "")
-    a.add_grade(100)
-    a.add_grade("Fifty")  # broken
-    a.delete_grade(5)  # IndexError
-    a.report()
+    """Entry point of the program"""
+    student = Student("Mercedes Mawyin", "1234567")
+    student.add_grade(100)
+    student.add_grade("Fifty")
+    student.delete_grade(5)
+    student.report()
 
 
 start_run()
